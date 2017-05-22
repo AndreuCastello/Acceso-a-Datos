@@ -334,3 +334,59 @@ private void inicializarBotones(){
 				}
 				
 			}
+
+//En los atributos de la clase añado las siguientes declaraciones
+
+//Listeners para cada dado
+      //private MouseListener[] listener_dados=new MouseListener[5];
+      //private boolean[] listener_activos=new boolean[5];  //True si el listener está activo
+
+//JLabels de las imágenes de los dados que podrán ser pulsados
+
+//Es un poco redudante y chapuza, pero era para no cambiar el código con los nombres dado1,dado2,dado3,dado4,dado5
+
+//private JLabel[] dados=new JLabel[5]; //Permitirá hacer bucle sobre dados para poner/quitar listeners
+
+//En el constructor de la clase asigno los valores del array de dados cada vez que defino el label de un dado al estilo
+
+             // dado1 = new JLabel("");
+              //dado1.setBounds(10, 10, 150, 150);
+             // contentPane.add(dado1);
+             // dados[0]=dado1;
+
+//En InicializarJuego(), asigno todos los listeners a los dados y pongo sus semáforos a true añadiendo el siguiente código
+
+      //Añadimos listeners a los dados 1 a 5 y avisamos que están activos
+             // for (int i=0; i<dados.length; i++)
+               //   {listener_dados[i]=new ListenerDados();
+               //   dados[i].addMouseListener(listener_dados[i]);
+                //  listener_activos[i]=true;}
+
+//En la implementación de la inner class del Mouse sobre los dados, ListenerDados() borro el listener del dado pulsado y pongo a false su semáforo correspondiente con líneas de códico como estas:
+
+
+
+             //  JLabel dado = (JLabel) e.getSource();
+             // int numeroDado=Integer.valueOf(dado.getName());
+            //  dado=dados[numeroDado-1];
+
+          //   ....
+
+              //borro listener y actualizo semáforo
+
+              //    dado.removeMouseListener(listener_dados[numeroDado-1]); //o dado.removeMouseListener(this);
+              //    listener_activos[numeroDado-1]=false;
+              //    dado.setIcon(dadoGris);
+
+
+
+//Dentro del listener del botón Mathdice que cierra la jugada y abre la opción a hacer otra borro los listeners de los dados que no han sido pulsados
+
+  //Borramos los listeners de los dados no pulsados para que no estén activos la siguiente jugada
+                 // for (int i=0; i<listener_dados.length; i++)
+                   //   {
+                  //      if (listener_activos[i]); 
+                    //     {dados[i].removeMouseListener(listener_dados[i]);
+                    //      listener_activos[i]=false;}
+                   //   }
+           //   }

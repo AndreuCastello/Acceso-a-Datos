@@ -31,6 +31,7 @@ public class Perfil extends JPanel {
 	private JTextField CuadroEdad;
 	private JTextField CuadroPuntos;
 	private JTextField CuadroMensajes;
+	private Jugador player;
 
 	
 	
@@ -142,22 +143,22 @@ public class Perfil extends JPanel {
 			//MousseListener que vamos a utilizar
 			@Override
 			public void mousePressed(MouseEvent e) {
-				player1.setNombre(CuadroNombre.getText());
-				player1.setApellidos(CuadroPrimerApellido.getText());
-				player1.setApellidos(Cuadro2oApellido.getText());
-				player1.setEdad(Integer.parseInt(CuadroEdad.getText()));
-				CuadroMensajes.setText("Cambios guardados con éxito para el jugador "+player1.getNombre()+" "+player1.getApellido1()+" "+player1.getApellido2()+" de "+player1.getEdad()+" años.");
+				player.setNombre(CuadroNombre.getText());
+				player.setApellidos(CuadroPrimerApellido.getText());
+				player.setApellidos(Cuadro2oApellido.getText());
+				player.setEdad(Integer.parseInt(CuadroEdad.getText()));
+				CuadroMensajes.setText("Cambios guardados con éxito para el jugador "+player.getNombre()+" "+player.getApellido1()+" "+player.getApellido2()+" de "+player.getEdad()+" años.");
 				} 
 			}	
 		
 		//Aqui tendria que pasar los datos del jugador que se hayan guardado
 		public void setJugador(Jugador player){
-			this.player1=player1;
-			CuadroNombre.setText(player1.getNombre());
-			CuadroPrimerApellido.setText(player1.getApellido1());
-			Cuadro2oApellido.setText(player1.getApellido2());
-			CuadroEdad.setText(String.valueOf(player1.getEdad()));
-			CuadroPuntos.setText(String.valueOf(player1.getPuntos()));
+			this.player=player;
+			CuadroNombre.setText(player.getNombre());
+			CuadroPrimerApellido.setText(player.getApellido1());
+			Cuadro2oApellido.setText(player.getApellido2());
+			CuadroEdad.setText(String.valueOf(player.getEdad()));
+			CuadroPuntos.setText(String.valueOf(player.getPuntos()));
 		
 			//ventanaPerfil.setJugador(player);
 		
