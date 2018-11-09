@@ -1,11 +1,10 @@
-package view;
+package View2;
 
-
+import java.awt.Dimension;
 
 import javax.swing.*;
 
 import AlmacenLibros.Libro;
-import AlmacenLibros.Libro2;
 import model.GestionDatos;
 
 import java.awt.event.ActionListener;
@@ -13,10 +12,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 
-public class LaunchView extends JFrame {
+public class LaunchView2 extends JFrame {
 
 	private JButton comparar,buscar;
 	private JTextField fichero1,fichero2,palabra;
@@ -33,7 +31,7 @@ public class LaunchView extends JFrame {
 	private JTextField txtEditor;
 	private JTextField txtNum;
 	
-	public LaunchView() {
+	public LaunchView2() {
 		
 		setBounds(200,200,1070,480);
 		setTitle("Proyecto Buffers");	
@@ -91,11 +89,9 @@ public class LaunchView extends JFrame {
         		String Editor=txtEditor.getText();
         		int NumPaginas=Integer.parseInt(txtNum.getText());
         		Libro l =new Libro(Identificador, Nombre, Autor, AñoDePublicacion,Editor,NumPaginas);//Creamos un objeto tipo libro
-        		Libro2 a =new Libro2(Identificador, Nombre, Autor, AñoDePublicacion,Editor,NumPaginas);
         		GestionDatos g = new GestionDatos();
         		
         		g.guardarLibro(l);
-        		g.guardarLibro2(a);
         		
         	}
         });
@@ -112,7 +108,7 @@ public class LaunchView extends JFrame {
         		txtSalida.setText(m);
         	}
         });
-        btnSacarLibro.setBounds(10, 143, 124, 26);
+        btnSacarLibro.setBounds(10, 190, 124, 26);
         panel.add(btnSacarLibro);
         
         JLabel lblId = new JLabel("Id");
@@ -194,20 +190,6 @@ public class LaunchView extends JFrame {
         });
         btnSacarTLibros.setBounds(10, 377, 200, 37);
         panel.add(btnSacarTLibros);
-        
-        JButton btnSacarLibrosPorAño = new JButton("Sacar Libro Por A\u00F1o");
-        btnSacarLibrosPorAño.addActionListener(new ActionListener() {
-        public void actionPerformed(ActionEvent e) {
-    		String año=txtPubl.getText()+".txt";
-    		String n;
-    		GestionDatos g = new GestionDatos();
-    		n=g.recuperarAño(año);
-    		txtSalida.setText(n);
-    	}
-        });
-        
-       btnSacarLibrosPorAño.setBounds(10, 197, 150, 26);
-        panel.add(btnSacarLibrosPorAño);
         
         
 		

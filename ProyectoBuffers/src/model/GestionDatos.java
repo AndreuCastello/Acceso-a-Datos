@@ -17,6 +17,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import AlmacenLibros.Libro;
+import AlmacenLibros.Libro2;
 import controller.GestionEventos;
 
 public class GestionDatos {
@@ -140,6 +141,19 @@ public class GestionDatos {
         }
         
 	}
+	public void guardarLibro2(Libro2 a){
+		File libro2=new File("./mislibros/"+Integer.toString(a.getAñoDePublicacion())+".txt");
+		ObjectOutputStream out=null;
+		try {
+			out = new ObjectOutputStream(new FileOutputStream(libro2));
+			out.writeObject(a);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}finally{
+			intentarCerrar(out);
+        }
+		
+	}
 	
 	public String recuperar(String f) {
 		Libro l = null;
@@ -161,9 +175,32 @@ public class GestionDatos {
         
         return aux;
 	}
+	
+	public String recuperarAño(String r) {
+		Libro2 a = null;
+		String aux;
+		aux="Libro no encontrado";
+		File a2=new File(r);
+        ObjectInputStream in=null;
+        try {
+            in = new ObjectInputStream(new FileInputStream("./mislibros/"+r));
+            a = (Libro2) in.readObject();       
+            aux=a.toString();
+        } catch (ClassNotFoundException ex) {
+            System.err.println("Error de fichero");
+        } catch (IOException ex) {
+        	System.err.println("Error IO");
+        }finally{
+            intentarCerrar(in);
+        }
+        
+        return aux;
+	}
+	
 	public ArrayList<Libro> recuperarTodos() throws IOException, ClassNotFoundException{//Creamos el array de libros
 		ArrayList<Libro> listaLibros=new ArrayList<Libro>();
 		Libro e;
+		
 		
 		File[] paths;
 		ObjectInputStream in=null;
@@ -184,7 +221,34 @@ public class GestionDatos {
 			}
 		return listaLibros;
 	}
+	
+	//Se tendria que haber añadido en el array list para sacar todos los libros cuyo año sean el mismo
+	
+	public ArrayList<Libro2> recuperarPorAño() throws IOException, ClassNotFoundException{
+		ArrayList<Libro2> listaLibrosAño=new ArrayList<Libro2>();
+		
+		Libro2 e2;
+		
+		File[] paths;
+		ObjectInputStream in=null;
+		File folder = new File("./mislibros/");
+		String[] ficheros = folder.list();//Creamos un array con todos los ficheros de la carpeta
+		if (ficheros == null)
+			  System.out.println("No hay ficheros en el directorio especificado");
+			else { 
+			  for (int x=0;x<ficheros.length;x++){//Recogemos cada fichero de la carpeta
+				  
+				 File aux=new File("./mislibros/"+ficheros[x]);
+			  
+				 in=new ObjectInputStream(new FileInputStream(aux));
+				 e2=(Libro2)in.readObject();
+				  listaLibrosAño.add(e2);
 
+				  
+			}
+			}
+		return listaLibrosAño;
+	}
 	
 	public static void intentarCerrar(Closeable aCerrar) {
 		try {
